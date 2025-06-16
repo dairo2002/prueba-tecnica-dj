@@ -1,6 +1,8 @@
+from datetime import timezone
 from django.shortcuts import render
 from .serializers import CuentaSerializer
 from .models import Cuenta
+from django.contrib.auth import login as dj_login
 
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view, permission_classes
@@ -8,7 +10,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib import auth
-
 
 
 @api_view(['POST'])
@@ -40,6 +41,7 @@ def login (request):
     password = request.data.get('password')     
     user = auth.authenticate(email=email, password=password)    
     if user is not None:
+        dj_login(request._request, user) # Actualiza el inicio de sesión=last_login
         token = RefreshToken.for_user(user)
         return Response(
             {
@@ -65,3 +67,10 @@ def logout(request):
         return Response({"success": True, "message": "Sesión cerrada correctamente"}, status=status.HTTP_205_RESET_CONTENT)
     except Exception as e:
         return Response({"error": True, "message": "Token inválido o ya caducado"}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+@api_view(['GET'])
+def listUsers(request):
+    users = Cuenta.objects.all()
+    serializer = CuentaSerializer(users, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

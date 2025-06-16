@@ -42,15 +42,14 @@ class ManejardorCuenta(BaseUserManager):
 class Cuenta(AbstractBaseUser):
     name = models.CharField(max_length=50)       
     email = models.EmailField(max_length=50, unique=True)    
-
     # Permisos campos requeridos
-    inicio_acceso = models.DateField(default=timezone.now)
-    ultimo_acceso = models.DateField(default=timezone.now)   
+    date_joined = models.DateTimeField(default=timezone.now)    
+    last_login = models.DateTimeField(blank=True, null=True)    
     is_staff = models.BooleanField(default=False, verbose_name="usuario")
     is_admin = models.BooleanField(default=False, verbose_name="Administrador")
     is_active = models.BooleanField(default=True, verbose_name="Actvio")
+    # Campos password 
 
-    
     USERNAME_FIELD = "email" # Campo para iniciar sesión en el admin
     REQUIRED_FIELDS = ["name"] # Los demas campos tiene validación por defecto
     

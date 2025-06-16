@@ -4,4 +4,4 @@ from .models import Cuenta
 class CuentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuenta
-        fields = ["name", "email", "password"]
+        fields = "__all__"
