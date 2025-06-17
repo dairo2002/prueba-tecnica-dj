@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'users.apps.UsersConfig',
+    'rest_framework',    
     'api.apps.ApiConfig',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
@@ -54,7 +53,7 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True, # Genera un nuevo refresh token al usar el anterior
 }
 
-AUTH_USER_MODEL = 'users.Cuenta' # Especifica el modelo de usuario personalizado
+AUTH_USER_MODEL = 'api.Cuenta' # Modelo personalizado para el usuario 
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
