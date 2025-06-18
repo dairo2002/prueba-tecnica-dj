@@ -128,15 +128,41 @@ def listTasks(request):
     return Response(tasks)
 
 
+# ZONES = {
+#     "CO": ["America/Bogota", "America/Medellin"],
+#     "MX": [
+#         "America/Mexico_City",
+#         "America/Cancun",
+#         "America/Tijuana",
+#         "America/Monterrey",
+#     ],
+#     "FR": ["Europe/Paris", "Europe/Lyon"],
+# }
+
 ZONES = {
-    "CO": ["America/Bogota", "America/Medellin"],
-    "MX": [
-        "America/Mexico_City",
-        "America/Cancun",
-        "America/Tijuana",
-        "America/Monterrey",
+    "CO": [
+        {"zone": "America/Bogota", "city": "Bogota"},
+        {"zone": "America/Bogota", "city": "Medellin"},
+        {"zone": "America/Bogota", "city": "Barranquilla"},
+        {"zone": "America/Bogota", "city": "Bucaramanga"},
+        {"zone": "America/Bogota", "city": "Cali"},
+        {"zone": "America/Bogota", "city": "Pereira"},        
     ],
-    "FR": ["Europe/Paris", "Europe/Lyon"],
+    "MX": [
+        {"zone": "America/Mexico_City", "city": "Mexico City"},
+        {"zone": "America/Tijuana", "city": "Tijuana"},
+        {"zone": "America/Merida", "city": "Merida"},
+        {"zone": "America/Cancun", "city": "Cancun"},
+        {"zone": "America/Monterrey", "city": "Monterrey"},
+        {"zone": "America/Chihuahua", "city": "Chihuahua"},
+        {"zone": "America/Matamoros", "city": "Matamoros"},
+    ],
+    "FR": [
+        {"zone": "Europe/Paris", "city": "Paris"},
+        {"zone": "Europe/Paris", "city": "Lyon"},
+        {"zone": "Europe/Paris", "city": "Nantes"},
+        {"zone": "Europe/Paris", "city": "Estrasburgo"},
+    ],
 }
 
 
